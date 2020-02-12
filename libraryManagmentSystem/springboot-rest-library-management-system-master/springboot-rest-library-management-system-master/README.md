@@ -1,4 +1,5 @@
 # springboot-rest-library-management-system
+## Basic Rest project wihhout Database, used in memory datastructures such as HashMap to store the data, recoomended for interview
 A complete Spring Boot example application for REST APIs; its purpose is to demonstrate various API .
 
 	All List of Library's users
