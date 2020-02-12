@@ -1,0 +1,81 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Add Payment</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+</head>
+
+<body>
+	<div class="row">
+		<div th:include="../fragments/nav-bar :: header"></div>
+	</div>
+
+	<div class="container">
+		<div class="col-md-12 col-sm-6 col-xs-12">
+			<div class="row">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Pay your reservation fee</div>
+
+					<form action="#" th:action="@{pay-bill}" th:object="${payment}"
+						method="post">
+						<table>
+							<tr>
+								<td>Amount to be Paid</td>
+								<td th:text="${session.totalPriceSession}" />
+							</tr>
+
+							<tr>
+								<td>Amount:</td>
+								<td><input type="text" th:field="*{amount}"
+									th:value="${session.totalPriceSession}" /></td>
+							</tr>
+							<tr>
+								<td>Selection Card Type</td>
+								<td><select name="paymentType">
+										<option value="Credit Card">Credit Card</option>
+										<option value="Master Card">Master Card</option>
+										<option value="Visa Card">Visa Card</option>
+								</select></td>
+							</tr>
+
+							<tr>
+								<td>Card Number:</td>
+								<td><input type="text" th:field="*{cardNumber}" />(xxxx-xxxx-xxxx-xxxx)</td>
+								<td th:if="${#fields.hasErrors('cardNumber')}"
+									th:errors="*{cardNumber}" bgcolor="#FF0000">Card number
+									Error</td>
+							</tr>
+
+
+							<tr>
+								<td>Expiry Date</td>
+								<td><input type="text" th:field="*{expiryDate}" />(mm/yyyy)</td>
+
+								<td th:if="${#fields.hasErrors('expiryDate')}"
+									th:errors="*{expiryDate}" bgcolor="#FF0000"></td>
+							</tr>
+
+							<tr>
+								<td>CVV</td>
+								<td><input type="text" th:field="*{cvvNumber}" />xxx</td>
+								<td th:if="${#fields.hasErrors('cvvNumber')}"
+									th:errors="*{cvvNumber}" bgcolor="#FF0000"></td>
+
+							</tr>
+
+							<tr>
+								<td><input type="submit" value="Pay" /></td>
+							</tr>
+						</table>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+
+</html>

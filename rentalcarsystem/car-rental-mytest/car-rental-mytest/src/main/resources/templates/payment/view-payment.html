@@ -1,0 +1,81 @@
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>View Individual Payment</title>
+
+<style>
+table {
+	border-collapse: collapse;
+	width: 80%;
+}
+
+th, td, h1 {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+
+h3 {
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+
+</head>
+
+<body>
+	<h1>Payment Information Page</h1>
+	<table>
+		<thead>
+			<th>Reservation ID</th>
+			<th>Amount</th>
+			<th>Status</th>
+			<th>Customer ID</th>
+			<th>Customer name</th>
+			<th>Vehicle plat No.</th>
+			<th>Brand</th>
+			<th>Type</th>
+			<th>Model</th>
+		</thead>
+		<tbody>
+			<tr th:each="list: ${paymentList}">
+
+				<td th:text="${list.reservation.reservationId}" />
+				<td th:text="${list.amount}" />
+				<td th:text="${list.isConfirm}" />
+				<td th:text="${list.reservation.person.personId}" />
+				<td th:text="${list.reservation.person.name}" />
+				<td th:text="${list.reservation.vehicle.vehiclePlateNumber}" />
+				<td th:text="${list.reservation.vehicle.brand}" />
+				<td th:text="${list.reservation.vehicle.type}" />
+				<td th:text="${list.reservation.vehicle.model}" />
+
+				<td th:if="${isAdmin}"><a href="#"
+					data-th-href="@{~/payment/cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td>
+
+
+				<!-- <td><a	th:href="@{~/payment/cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td> -->
+				<!-- <td><a	th:href="@{~/payment/update-payment/{id}(id=${list.paymentId})}">Update</a></td> -->
+
+				<td th:if="${isAdmin}"><a href="#"
+					data-th-href="@{~/payment/update-payment/{id}(id=${list.paymentId})}">Update</a></td>
+
+
+
+				<td><a th:href="@{~/payment/view-all-payment}">View all
+						Payments</a></td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+
+</html>

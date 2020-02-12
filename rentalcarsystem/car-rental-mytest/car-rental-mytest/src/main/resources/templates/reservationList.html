@@ -1,0 +1,54 @@
+<html>
+<head>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+<style>
+
+
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+</style>
+</head>
+<body>
+	<div class="row">
+		<div th:include="../fragments/nav-bar :: header"></div>
+	</div>
+	<h1>Reservations List</h1>
+	<div class="dataTable">
+		<table>
+			<tr>
+				<th>Reservation ID</th>
+				<th>Pickup Date</th>
+				<th>Return Date</th>
+				<th>Reservation Date</th>
+				<th>Person Name</th>
+				<th>Vehicle Name</th>
+			</tr>
+			<tr th:each="res : ${reservations}">
+				<td th:text="${res.reservationId}"></td>
+				<td th:text="${res.pickUpDateTime}"></td>
+				<td th:text="${res.returnDateTime}"></td>
+				<td th:text="${res.reservationDateTime}"></td>
+				<td th:text="${res.person.name}"></td>
+				<td
+					th:text="${res.vehicle.brand} + ${res.vehicle.type} + ${res.vehicle.model}"></td>
+				<td><a th:href="@{/reservation/edit/} + ${res.reservationId}">Edit</a>
+					| <a th:href="@{/reservation/delete/} + ${res.reservationId}"
+					onclick="return confirm('Are you sure?')">Delete</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

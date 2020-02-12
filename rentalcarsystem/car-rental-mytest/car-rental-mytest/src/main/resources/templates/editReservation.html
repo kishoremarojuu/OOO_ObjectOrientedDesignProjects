@@ -1,0 +1,15 @@
+<html>
+<body>
+	<h1>Welcome to Car Rental System</h1>
+	<h1>add new reservation</h1>
+	<h1> For Car Id: <span th:text="${CarId}" /></h1>
+	 <form action="#" th:action="@{/reservation/update/}+${carNumber}" th:object="${reservation}" method="post">
+	 	<p>PickUp DateTime: <input type="date" pattern="yyyy-MM-dd" th:field="*{pickUpDateTime}" /></p>
+	 	 <p th:if="${#fields.hasErrors('pickUpDateTime')}" th:errors="*{pickUpDateTime}">Return Date Error</p>
+        <p>Return DateTime: <input type="date" pattern="yyyy-MM-dd" th:field="*{returnDateTime}" /></p>
+        <p th:if="${#fields.hasErrors('returnDateTime')}"  th:errors="*{returnDateTime}">Return Date Error</p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        <input type="hidden"  th:field="*{reservationId}" />
+    </form>
+</body>
+</html>

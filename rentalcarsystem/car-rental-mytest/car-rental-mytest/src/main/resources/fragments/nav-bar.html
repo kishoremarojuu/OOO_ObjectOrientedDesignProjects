@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+<meta charset="utf-8" />
+</head>
+<body>
+	<div class="row" th:fragment="header">
+		<header>
+			<div class="nav">
+				<ul>
+					<li class="home"><a href="../user/homeRedicrect">Home</a></li>
+					<li class="tutorials"><a href="#">Car</a></li>
+					<li class="about"><a href="../vehicle/vehicles">Vehicle</a>
+						<!-- <ul>
+							<li><a href="../vehicle/vehicles">Show All </a></li>
+							<li><a href="../vehicle/add">Add</a></li>
+						</ul> -->
+					</li>
+					<li class="about"><a href="#">Reservation</a>
+						<ul>
+							<li><a href="../reservation/list">Show All </a></li>
+						</ul>
+					</li>
+					<li class="news"><a href="../payment/view-all-payment">Payment</a>
+						<ul>
+							<li><a href="../payment/view-all-payment">Show All</a></li>
+							
+						</ul>
+					</li>
+					<li class="contact"><a href="../user/logout">Logout</a></li>
+				</ul>
+			</div>
+		</header>
+	</div>
+</body>
+</html>

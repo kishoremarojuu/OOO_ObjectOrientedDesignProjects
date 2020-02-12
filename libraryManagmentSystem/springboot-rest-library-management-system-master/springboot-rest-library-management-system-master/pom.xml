@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>lms.co</groupId>
+  <artifactId>springboot-rest-library-management-system</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>sj-springBootRest</name>
+  <url>http://maven.apache.org</url>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.4.RELEASE</version>
+    </parent>
+
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <java.version>1.8</java.version>
+      <start-class>lms.co.LMSApplication</start-class>
+  </properties>
+
+  <dependencies>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <!-- tag::actuator[] -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-actuator</artifactId>
+      </dependency>
+      <!-- end::actuator[] -->
+      <dependency>
+          <groupId>org.springframework.hateoas</groupId>
+          <artifactId>spring-hateoas</artifactId>
+      </dependency>
+
+      <!-- testing dependencies -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.jayway.jsonpath</groupId>
+          <artifactId>json-path</artifactId>
+          <version>2.0.0</version>
+      </dependency>
+      <dependency>
+          <groupId>io.github.robwin</groupId>
+          <artifactId>assertj-swagger</artifactId>
+          <version>0.1.2</version>
+      </dependency>
+
+      <!-- Swagger tooling dependencies -->
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger2</artifactId>
+          <version>2.0.2</version>
+      </dependency>
+
+      
+
+  </dependencies>
+    <build>
+        <resources>
+            <!-- Add the API spec files to the classpath (to help with testing) -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.class</include>
+                    </includes>
+                    <excludes>
+                        <!-- Excluding this class as the differences between
+                        the Swagger spec in src/docs/swagger and the SpringFox
+                        produced spec are too great to easily resolve
+                        -->
+                        <exclude>**/VerifySwaggerContractTest.class</exclude>
+                    </excludes>
+                    <systemPropertyVariables>
+                        <org.springframework.restdocs.outputDir>
+                            ${snippetsDirectory}
+                        </org.springframework.restdocs.outputDir>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+     
+
+             
+
+             
+            <!--
+            The Site phase is used for generating the API docs via Swagger but we don't want all the other Site stuff
+            generated so set all the default Site config to false
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.4</version>
+                <configuration>
+                    <generateReports>false</generateReports>
+                    <generateProjectInfo>false</generateProjectInfo>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

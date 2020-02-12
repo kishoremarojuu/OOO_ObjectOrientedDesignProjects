@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<tr th:each="prod: ${allProducts}">
+		<td th:text="${prod.name}">Oranges</td>
+		<td th:text="${#numbers.formatDecimal(prod.price, 1, 2)}">0.99</td>
+	</tr>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+<script th:src="@{/js/jquery.js}"></script>
+<script th:src="@{/js/vehicle.js}"></script>
+<meta charset="utf-8" />
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12 col-sm-6 col-xs-12">
+
+
+			<div class="row">
+				<div class="row">
+					<div th:include="fragments/nav-bar :: header"></div>
+				</div>
+				<div class="panel panel-primary">
+					<div class="panel-heading">Vehicles List</div>
+
+					<div class="panel-body">
+
+
+						<div class="row">
+							<form th:action="@{/vehicle/search}" th:object="${vs}" > 
+							
+								<input id="minSeats" type="number"
+									th:field="${vs.minSeats}" placeholder="Smallest Seat Numbers" />
+								<input id="minPrice" min="0.0" type="number"
+									th:field="${vs.minPrice}" placeholder="Minmum Price" />
+								 <input
+									id="maxPrice" type="number" th:field="${vs.maxPrice}"
+									placeholder="Maximum Price" /> <input type="submit"
+									value="Search" />
+							</form>
+						</div>
+
+						<table class="table table-striped">
+							<thead class="thead-inverse">
+								<tr>
+									<th>#ID</th>
+									<th>Vehicle Brand</th>
+									<th>Table Type</th>
+									<th>Table Model</th>
+									<th>Vehicle Plate #}</th>
+									<th># of Seats</th>
+									<th>Daily Price</th>
+									<td>Detail</td>
+									<!-- check role before desplaying -->
+									<th th:if="${isAdmin}">Delete</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr data-th-each="vehicle : ${vehicles}"
+									data-vID="${vehicle.vehicleId}">
+									<td data-th-text="${vehicle.vehicleId}"></td>
+									<td data-th-text="${vehicle.brand}"></td>
+									<td data-th-text="${vehicle.type}"></td>
+									<td data-th-text="${vehicle.model}"></td>
+									<td data-th-text="${vehicle.vehiclePlateNumber}"></td>
+									<td data-th-text="${vehicle.numberOfSeats}"></td>
+									<td data-th-text="${vehicle.dailyPrice}"></td>
+									<td><a href="#"
+										data-th-href="@{'/vehicle/detail/'+${vehicle.vehicleId}}">Detail</a></td>
+									<td th:if="${isAdmin}"><a href="#"
+										data-th-href="@{'/vehicle/update/'+${vehicle.vehicleId}}">Edit</a></td>
+									<td><a href="#"
+										data-th-href="@{'/vehicle/reserve/'+${vehicle.vehicleId}}">Reserve</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div th:if="${isAdmin}">
+						<a href="/vehicle/add" class="btn btn-primary btn">Add New Car
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

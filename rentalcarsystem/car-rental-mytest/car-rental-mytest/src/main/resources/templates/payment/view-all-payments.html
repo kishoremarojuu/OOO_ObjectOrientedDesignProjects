@@ -1,0 +1,91 @@
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Reading List</title>
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+<style>
+table {
+	border-collapse: collapse;
+	width: 80%;
+}
+
+th, td, h1 {
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2
+}
+
+th {
+	background-color: #4CAF50;
+	color: white;
+}
+
+h3 {
+	background-color: #4CAF50;
+	color: white;
+}
+</style>
+
+</head>
+
+
+<body>
+	<div class="row">
+		<div th:include="../fragments/nav-bar :: header"></div>
+	</div>
+
+	<h3>Search payment on the basic customer name</h3>
+	<form action="#" th:action="@{../payment/search-payment}" method="post">
+		Input customer name <input type="text" name="customerName" /> <input
+			type="submit" name="Search" value="Search" />
+
+	</form>
+	<h3>All payment Information</h3>
+	<table>
+		<thead>
+			<th>Transaction Date-Time</th>
+			<th>Payment Type</th>
+			<th>Amount</th>
+			<th>Reservation ID</th>
+			<th>Customer name</th>
+			<th>Vehicle plat No.</th>
+			<th>Brand</th>
+			<th>Type</th>
+			<th>Model</th>
+		</thead>
+		<tbody>
+			<tr th:each="list: ${paymentList}">
+				<td><span th:text="${list.paymentDateTime}" /></td>
+				<td><span th:text="${list.paymentType}" /></td>
+				<td><span th:text="${list.amount}" /></td>
+				<td><span th:text="${list.reservation.reservationId}" /></td>
+				<td><span th:text="${list.reservation.person.name}" /></td>
+				<td><span
+					th:text="${list.reservation.vehicle.vehiclePlateNumber}" /></td>
+				<td><span th:text="${list.reservation.vehicle.brand}" /></td>
+				<td><span th:text="${list.reservation.vehicle.type}" /></td>
+				<td><span th:text="${list.reservation.vehicle.model}" /></td>
+				 <td th:if="${isAdmin}"><a href="#"
+					data-th-href="@{cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td> 
+				<!-- <td><a th:href="@{cancel-payment/{id}(id=${list.paymentId})}">Delete</a></td> -->
+				<!-- <td><a th:href="@{update-payment/{id}(id=${list.paymentId})}">Update</a></td> -->
+				
+				<td th:if="${isAdmin}"><a href="#"
+					data-th-href="@{update-payment/{id}(id=${list.paymentId})}">Update</a></td> 
+				
+				
+				<td><a th:href="@{view-payment/{id}(id=${list.paymentId})}">View</a></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p>
+		Total Reservation Payment: <b> <span th:text="${totalAmount}" /></b>
+	</p>
+</body>
+
+</html>

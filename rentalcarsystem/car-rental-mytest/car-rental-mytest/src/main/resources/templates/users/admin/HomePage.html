@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<link th:href="@{/css/bootstrap.css}" rel="stylesheet" media="screen" />
+<link th:href="@{/css/main.css}" rel="stylesheet" media="screen" />
+<title>Admin Home Page</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.1/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.1/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+
+</head>
+<body>
+	<div class="row">
+		<div th:include="../fragments/nav-bar :: header"></div>
+	</div>
+
+	<!-- <a class="navbar-brand" href="#" th:href="@{/}">Home</a> -->
+	
+		<a href="#" th:href="@{/user/users}">Users Information</a>
+	
+		<!-- <li><form th:action="@{/logout}" method="post" id="logoutForm">
+				<input style="margin-top: 7px" class="btn btn-primary btn-block"
+					type="submit" value="Logout" />
+			</form></li> -->
+	
+
+</body>
+</html>

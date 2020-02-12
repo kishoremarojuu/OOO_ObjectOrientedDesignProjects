@@ -1,0 +1,40 @@
+<html>
+<head>
+<meta charset="ISO-8859-1" />
+<title>Update Payment</title>
+</head>
+<style>
+</style>
+<body>
+	<h1>Update your reservation bill</h1>
+
+	<form action="#" th:action="@{../payment-updated}"
+		th:object="${payment}" method="post">
+		<table>
+			<tr>
+			<tr>
+				<td>Reservation ID</td>
+				<td th:text="${session.paymentObject.reservation.reservationId}" />
+			</tr>
+			<td>Customer name</td>
+			<td th:text="${session.paymentObject.reservation.person.name}" />
+			</tr>
+			<tr>
+				<td>Vehicle Plat No</td>
+				<td
+					th:text="${session.paymentObject.reservation.vehicle.vehiclePlateNumber}" />
+			</tr>
+			<tr>
+				<td>Amount</td>
+				<td><input type="text" name="amount"
+					th:value="${session.paymentObject.amount}" /></td>
+				<!-- <td style="color: red" th:if="${#fields.hasErrors('amount')}"
+					th:errors="*{amount}" />  -->
+
+				<td><input type="submit" name="Update" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+
+</html>
