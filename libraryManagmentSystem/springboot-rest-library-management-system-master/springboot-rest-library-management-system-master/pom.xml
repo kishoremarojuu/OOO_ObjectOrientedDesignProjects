@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>lms.co</groupId>
-  <artifactId>springboot-rest-library-management-system</artifactId>
+  <artifactId>library-managment-system</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -96,12 +96,6 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
-
-     
-
-             
-
-             
             <!--
             The Site phase is used for generating the API docs via Swagger but we don't want all the other Site stuff
             generated so set all the default Site config to false
@@ -116,5 +110,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>library-managment-system</finalName>
+
     </build>
 </project>
